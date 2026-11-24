@@ -380,7 +380,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 /* Custom Pomodoro duration controls */
 .timer-settings{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;align-items:end;max-width:440px;margin:0 auto 12px}.timer-settings .form-row{margin:0}.timer-settings .field{min-width:0;width:100%}.timer-settings #applyTimerSettings{grid-column:1/-1;width:100%}@media(max-width:760px){.timer-settings{gap:9px}.timer-settings .form-row label{font-size:11px}}
-\n</style>
+\n
+/* Keep Show/Hide neatly inside the password input */
+.password-wrap{position:relative;display:block;width:100%;min-width:0}
+.password-wrap .field{display:block;width:100%;min-width:0;padding-right:76px}
+.password-wrap .password-toggle{position:absolute;z-index:2;top:50%;right:8px;left:auto;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;min-width:48px;width:48px;min-height:32px;height:32px;margin:0;padding:0 6px;border:0;border-radius:8px;background:transparent;color:#0f8178;font-size:12px;font-weight:750;line-height:1;white-space:nowrap;overflow:visible;box-shadow:none}
+.password-wrap .password-toggle:hover{background:#e8f5f0;color:#096b64}
+.password-wrap .password-toggle:active{transform:translateY(-50%) scale(.96)}
+</style>
 </head>
 <body>
 <div class="auth-screen" id="authScreen">
