@@ -125,45 +125,7 @@
 </section>
 <div class="footer">STUDENT HUB · LEARN BETTER. PLAN SMARTER. MOVE FORWARD.</div>
 </div></main></div><div class="toast" id="toast" role="status"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-let supabaseClient=null, currentUser=null, authMode='login', cloudSaveTimer=null;
-const authScreen=$('#authScreen'), studentApp=$('#studentApp');
-function authMessage(message,isError=true){const el=$('#authMessage');el.textContent=message;el.style.color=isError?'#b54708':'#16804a'}
-function setAuthMode(mode){authMode=mode;const signup=mode==='signup';$('#loginTab').classList.toggle('active',!signup);$('#signupTab').classList.toggle('active',signup);$('#nameRow').classList.toggle('hidden',!signup);$('#authTitle').textContent=signup?'Create your account':'Welcome back';$('#authSubtitle').textContent=signup?'Sign up to save your study plan and profile securely.':'Log in to access your student dashboard and keep your data synced.';$('#authSubmit').textContent=signup?'Create account':'Log in';$('#authPassword').autocomplete=signup?'new-password':'current-password';authMessage('')}
-$('#loginTab').onclick=()=>setAuthMode('login');$('#signupTab').onclick=()=>setAuthMode('signup');
-function showSignedIn(user){currentUser=user;authScreen.classList.add('hidden');studentApp.classList.remove('hidden');$('#userEmail').textContent=user.email||'';$('#avatar').textContent=((user.user_metadata?.display_name||profile?.name||user.email||'S').trim()[0]||'S').toUpperCase()}
-function showSignedOut(){currentUser=null;studentApp.classList.add('hidden');authScreen.classList.remove('hidden');$('#userEmail').textContent=''}
-async function loadCloudData(){
- if(!currentUser)return;
- const {data,error}=await supabaseClient.from('student_data').select('tasks, profile, sessions').eq('user_id',currentUser.id).maybeSingle();
- if(error){toast('Could not load cloud data: '+error.message);return}
- if(data){tasks=Array.isArray(data.tasks)?data.tasks:[];profile=data.profile&&typeof data.profile==='object'?data.profile:{name:currentUser.user_metadata?.display_name||'',type:'College student'};store.set('tasks',tasks);store.set('profile',profile);store.set('sessions',Number(data.sessions)||0);$('#profileName').value=profile.name||'';$('#profileType').value=profile.type||'College student';$('#avatar').textContent=(profile.name||currentUser.email||'S')[0].toUpperCase();renderTasks();updateStats()}
- else {await saveCloudDataNow()}
-}
-async function saveCloudDataNow(){
- if(!currentUser||!supabaseClient)return;
- const payload={user_id:currentUser.id,tasks,profile,sessions:store.get('sessions',0),updated_at:new Date().toISOString()};
- const {error}=await supabaseClient.from('student_data').upsert(payload,{onConflict:'user_id'});
- if(error)toast('Cloud save failed: '+error.message)
-}
-window.studentHubSaveCloud=()=>{if(!currentUser)return;clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(saveCloudDataNow,500)};
-if(SUPABASE_URL.startsWith('https://')&&SUPABASE_ANON_KEY!=='YOUR_SUPABASE_ANON_KEY'&&window.supabase){
- supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
- $('#authForm').onsubmit=async e=>{e.preventDefault();const email=$('#authEmail').value.trim(),password=$('#authPassword').value;$('#authSubmit').disabled=true;$('#authSubmit').textContent='Please wait…';authMessage('');
-  try{if(authMode==='signup'){const name=$('#authName').value.trim();const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name}}});if(error)throw error;if(data.session){authMessage('Account created. Signing you in…',false)}else{authMessage('Account created. Check your email to confirm, then log in.',false);setAuthMode('login')}}
-  else{const {error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error}}
-  catch(err){authMessage(err.message||'Authentication failed')}finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in'}
- };
- $('#signOutBtn').onclick=async()=>{await saveCloudDataNow();const {error}=await supabaseClient.auth.signOut();if(error)toast(error.message)};
- supabaseClient.auth.onAuthStateChange(async(event,session)=>{if(session?.user){showSignedIn(session.user);if(event==='SIGNED_IN'||event==='INITIAL_SESSION')await loadCloudData()}else showSignedOut()});
- supabaseClient.auth.getSession().then(async({data,error})=>{if(error){authMessage(error.message);return}if(data.session){showSignedIn(data.session.user);await loadCloudData()}else showSignedOut()});
-}else{
- showSignedOut();
- $('#authSubmit').disabled=true;
- authMessage('Setup required: add your Supabase project URL and anon key in index.html after creating the database tables.');
-}
-
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // Add your Supabase project URL and anon/public key here after creating the project.
 const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
@@ -236,4 +198,43 @@ let qi=0,answers={},submitted=false;function renderQuiz(){let q=quiz[qi];$('#qui
 $('#nextQuestion').onclick=()=>{if(qi<quiz.length-1){if(answers[qi]===undefined){toast('Choose an answer first');return}qi++;renderQuiz()}else if(!submitted){if(answers[qi]===undefined){toast('Choose an answer first');return}submitted=true;renderQuiz()}else{qi=0;answers={};submitted=false;renderQuiz()}};renderQuiz();
 let profile=store.get('profile',{name:'',type:'College student'});$('#profileName').value=profile.name;$('#profileType').value=profile.type;$('#avatar').textContent=(profile.name||'S').trim()[0].toUpperCase();$('#saveProfile').onclick=()=>{profile={name:$('#profileName').value.trim(),type:$('#profileType').value};store.set('profile',profile);$('#avatar').textContent=(profile.name||'S')[0].toUpperCase();toast('Profile saved on this device')};
 $('#globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){go('learn');$('#resourceSearch').value=e.target.value;renderResources();}});
+
+let supabaseClient=null, currentUser=null, authMode='login', cloudSaveTimer=null;
+const authScreen=$('#authScreen'), studentApp=$('#studentApp');
+function authMessage(message,isError=true){const el=$('#authMessage');el.textContent=message;el.style.color=isError?'#b54708':'#16804a'}
+function setAuthMode(mode){authMode=mode;const signup=mode==='signup';$('#loginTab').classList.toggle('active',!signup);$('#signupTab').classList.toggle('active',signup);$('#nameRow').classList.toggle('hidden',!signup);$('#authTitle').textContent=signup?'Create your account':'Welcome back';$('#authSubtitle').textContent=signup?'Sign up to save your study plan and profile securely.':'Log in to access your student dashboard and keep your data synced.';$('#authSubmit').textContent=signup?'Create account':'Log in';$('#authPassword').autocomplete=signup?'new-password':'current-password';authMessage('')}
+$('#loginTab').onclick=()=>setAuthMode('login');$('#signupTab').onclick=()=>setAuthMode('signup');
+function showSignedIn(user){currentUser=user;authScreen.classList.add('hidden');studentApp.classList.remove('hidden');$('#userEmail').textContent=user.email||'';$('#avatar').textContent=((user.user_metadata?.display_name||profile?.name||user.email||'S').trim()[0]||'S').toUpperCase()}
+function showSignedOut(){currentUser=null;studentApp.classList.add('hidden');authScreen.classList.remove('hidden');$('#userEmail').textContent=''}
+async function loadCloudData(){
+ if(!currentUser)return;
+ const {data,error}=await supabaseClient.from('student_data').select('tasks, profile, sessions').eq('user_id',currentUser.id).maybeSingle();
+ if(error){toast('Could not load cloud data: '+error.message);return}
+ if(data){tasks=Array.isArray(data.tasks)?data.tasks:[];profile=data.profile&&typeof data.profile==='object'?data.profile:{name:currentUser.user_metadata?.display_name||'',type:'College student'};store.set('tasks',tasks);store.set('profile',profile);store.set('sessions',Number(data.sessions)||0);$('#profileName').value=profile.name||'';$('#profileType').value=profile.type||'College student';$('#avatar').textContent=(profile.name||currentUser.email||'S')[0].toUpperCase();renderTasks();updateStats()}
+ else {await saveCloudDataNow()}
+}
+async function saveCloudDataNow(){
+ if(!currentUser||!supabaseClient)return;
+ const payload={user_id:currentUser.id,tasks,profile,sessions:store.get('sessions',0),updated_at:new Date().toISOString()};
+ const {error}=await supabaseClient.from('student_data').upsert(payload,{onConflict:'user_id'});
+ if(error)toast('Cloud save failed: '+error.message)
+}
+window.studentHubSaveCloud=()=>{if(!currentUser)return;clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(saveCloudDataNow,500)};
+if(SUPABASE_URL.startsWith('https://')&&SUPABASE_ANON_KEY!=='YOUR_SUPABASE_ANON_KEY'&&window.supabase){
+ supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+ $('#authForm').onsubmit=async e=>{e.preventDefault();const email=$('#authEmail').value.trim(),password=$('#authPassword').value;$('#authSubmit').disabled=true;$('#authSubmit').textContent='Please wait…';authMessage('');
+  try{if(authMode==='signup'){const name=$('#authName').value.trim();const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name}}});if(error)throw error;if(data.session){authMessage('Account created. Signing you in…',false)}else{setAuthMode('login');authMessage('Account created. Check your email to confirm, then log in.',false)}}
+  else{const {error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error}}
+  catch(err){authMessage(err.message||'Authentication failed')}finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in'}
+ };
+ $('#signOutBtn').onclick=async()=>{await saveCloudDataNow();const {error}=await supabaseClient.auth.signOut();if(error)toast(error.message)};
+ supabaseClient.auth.onAuthStateChange(async(event,session)=>{if(session?.user){showSignedIn(session.user);if(event==='SIGNED_IN'||event==='INITIAL_SESSION')await loadCloudData()}else showSignedOut()});
+ supabaseClient.auth.getSession().then(async({data,error})=>{if(error){authMessage(error.message);return}if(data.session){showSignedIn(data.session.user);await loadCloudData()}else showSignedOut()});
+}else{
+ showSignedOut();
+ $('#authSubmit').disabled=true;
+ authMessage('Setup required: add your Supabase project URL and anon key in index.html after creating the database tables.');
+}
+
+
 </script></body></html>
