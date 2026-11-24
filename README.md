@@ -41,3 +41,6 @@ This is a functional front-end starter, not a production multi-user platform.
 6. Deploy the production app and configure a custom domain.
 
 Never place private API keys in browser JavaScript.
+
+## Deployment
+This site is deployed with GitHub Pages using the workflow at `.github/workflows/pages.yml`. Every push to `main` triggers a deployment.
