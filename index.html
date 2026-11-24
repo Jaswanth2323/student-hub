@@ -285,6 +285,24 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @keyframes authArrive{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.page.active,.auth-card{animation:none!important}.nav button:after,.mobile-dock button:after,.quick:after,.btn:after,.auth-tabs button:after{display:none}}
 
+
+/* Final hover polish: smooth easing in both directions */
+:root{--hover-ease:cubic-bezier(.22,.61,.36,1)}
+.nav button,.signout-btn,.btn,.quick,.resource,.feature-card,.card,.quiz-option,.password-toggle,.auth-tabs button,.mobile-dock button,.more-menu button{
+ transition-property:transform,background-color,background,border-color,box-shadow,color,filter,opacity;
+ transition-duration:.32s;
+ transition-timing-function:var(--hover-ease);
+}
+.nav button:hover{transform:translateX(3px)}
+.quick:hover,.feature-card:hover{transform:translateY(-4px)}
+.resource:hover,.card:hover{transform:translateY(-2px)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.035)}
+.btn:active,.quick:active,.feature-card:active{transform:translateY(0) scale(.985)}
+.nav button:active,.mobile-dock button:active{transform:scale(.98)}
+@media(prefers-reduced-motion:reduce){
+ .nav button,.signout-btn,.btn,.quick,.resource,.feature-card,.card,.quiz-option,.password-toggle,.auth-tabs button,.mobile-dock button,.more-menu button{transition:none!important}
+ .nav button:hover,.quick:hover,.feature-card:hover,.resource:hover,.card:hover,.btn:hover{transform:none!important}
+}
 </style>
 </head>
 <body>
