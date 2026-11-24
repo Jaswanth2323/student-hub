@@ -359,7 +359,7 @@ body{background:linear-gradient(180deg,#f8faf7 0%,#f1f5f1 100%);color:var(--ink)
 .auth-screen{background:radial-gradient(circle at 12% 12%,#2c7167 0,transparent 38%),radial-gradient(circle at 90% 90%,#24564f 0,transparent 35%),linear-gradient(135deg,#102c2a,#1c4841)}
 .auth-card{border-color:rgba(255,255,255,.78);background:linear-gradient(145deg,#fff 0%,#fbfdfb 100%)}
 .auth-tabs{background:#edf3ef}
-.auth-tabs button{color:#71817d}
+.auth-tabs button{color:#43584f}.auth-foot{color:#52665e}
 .auth-tabs button.active{background:#fff;color:#155d53;box-shadow:0 2px 8px rgba(19,63,53,.10)}
 .auth-brand-mark{color:#fff}
 .auth-message{color:#a45c18}
@@ -664,7 +664,7 @@ renderUpscSyllabus();renderUpscNotes();renderUpscHours();updateUpscWordCount();
 let supabaseClient=null, currentUser=null, authMode='login', cloudSaveTimer=null;
 const authScreen=$('#authScreen'), studentApp=$('#studentApp');
 function authMessage(message,isError=true){const el=$('#authMessage');el.textContent=message;el.style.color=isError?'#b54708':'#16804a'}
-function setAuthMode(mode){authMode=mode;const signup=mode==='signup';$('#loginTab').classList.toggle('active',!signup);$('#signupTab').classList.toggle('active',signup);$('#nameRow').classList.toggle('hidden',!signup);$('#authTitle').textContent=signup?'Create your account':'Welcome back';$('#authSubtitle').textContent=signup?'Sign up to save your study plan and profile securely.':'Log in to access your student dashboard and keep your data synced.';$('#authSubmit').textContent=signup?'Create account':'Log in';$('#authPassword').autocomplete=signup?'new-password':'current-password';authMessage('')}
+function setAuthMode(mode){authMode=mode;const signup=mode==='signup';$('#authName').required=signup;$('#authName').setCustomValidity('');$('#loginTab').classList.toggle('active',!signup);$('#signupTab').classList.toggle('active',signup);$('#nameRow').classList.toggle('hidden',!signup);$('#authTitle').textContent=signup?'Create your account':'Welcome back';$('#authSubtitle').textContent=signup?'Sign up to save your study plan and profile securely.':'Log in to access your student dashboard and keep your data synced.';$('#authSubmit').textContent=signup?'Create account':'Log in';$('#authPassword').autocomplete=signup?'new-password':'current-password';authMessage('')}
 $('#loginTab').addEventListener('click',e=>{e.preventDefault();setAuthMode('login')});$('#signupTab').addEventListener('click',e=>{e.preventDefault();setAuthMode('signup')});
 function showConfirmation(email){$('#confirmEmail').textContent=email;$('#confirmOverlay').classList.remove('hidden');$('#confirmDone').focus()}
 function hideConfirmation(){$('#confirmOverlay').classList.add('hidden')}
@@ -692,7 +692,7 @@ async function saveCloudDataNow(){
 window.studentHubSaveCloud=()=>{if(!currentUser)return;clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(saveCloudDataNow,500)};
 if(SUPABASE_URL.startsWith('https://')&&SUPABASE_ANON_KEY && SUPABASE_ANON_KEY.length > 20&&window.supabase){
  supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
- $('#authForm').onsubmit=async e=>{e.preventDefault();const email=$('#authEmail').value.trim(),password=$('#authPassword').value;$('#authSubmit').disabled=true;$('#authSubmit').textContent='Please wait…';authMessage('');
+ $('#authForm').onsubmit=async e=>{e.preventDefault();const email=$('#authEmail').value.trim(),password=$('#authPassword').value,name=$('#authName').value.trim();if(authMode==='signup'&&!name){$('#authName').setCustomValidity('Please enter your full name.');$('#authName').reportValidity();return}$('#authName').setCustomValidity('');$('#authSubmit').disabled=true;$('#authSubmit').textContent='Please wait…';authMessage('');
   try{if(authMode==='signup'){const name=$('#authName').value.trim();const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name}}});if(error)throw error;if(data.session){authMessage('Account created. Signing you in…',false)}else{setAuthMode('login');showConfirmation(email)}}
   else{const {error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error}}
   catch(err){const msg=err.message||'Authentication failed';if(/email not confirmed|confirm your email|email confirmation/i.test(msg)){showConfirmation($('#authEmail').value.trim())}else{authMessage(msg)}}finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in'}
