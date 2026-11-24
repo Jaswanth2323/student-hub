@@ -658,7 +658,7 @@ $('#saveUpscHours').onclick=()=>{const target=Number($('#upscTargetHours').value
 function updateUpscWordCount(){const text=$('#upscAnswerText').value.trim(),count=text?text.split(/\s+/).length:0,target=Number($('#upscAnswerTarget').value);$('#upscWordCount').textContent=count+' / '+target+' words';$('#upscWordStatus').textContent=count===0?'Not started':count<target?'Keep writing':count===target?'Target reached':'Over target'}
 $('#upscAnswerText').addEventListener('input',updateUpscWordCount);$('#upscAnswerTarget').addEventListener('change',updateUpscWordCount);
 $('#clearUpscAnswer').onclick=()=>{$('#upscAnswerPrompt').value='';$('#upscAnswerText').value='';updateUpscWordCount();toast('Answer draft cleared')};
-$('[data-upsc-scroll]').forEach(b=>b.onclick=()=>{const target=document.getElementById(b.dataset.upscScroll);if(target)target.scrollIntoView({behavior:'smooth',block:'start'})});
+$$('[data-upsc-scroll]').forEach(b=>b.onclick=()=>{const target=document.getElementById(b.dataset.upscScroll);if(target)target.scrollIntoView({behavior:'smooth',block:'start'})});
 renderUpscSyllabus();renderUpscNotes();renderUpscHours();updateUpscWordCount();
 
 let supabaseClient=null, currentUser=null, authMode='login', cloudSaveTimer=null;
