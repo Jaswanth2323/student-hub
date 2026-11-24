@@ -303,6 +303,80 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  .nav button,.signout-btn,.btn,.quick,.resource,.feature-card,.card,.quiz-option,.password-toggle,.auth-tabs button,.mobile-dock button,.more-menu button{transition:none!important}
  .nav button:hover,.quick:hover,.feature-card:hover,.resource:hover,.card:hover,.btn:hover{transform:none!important}
 }
+
+/* Student Hub palette refresh — clean ivory, deep evergreen and teal */
+:root{
+ --bg:#f5f7f4;--surface:#ffffff;--ink:#1d2b29;--muted:#71817d;--line:#e3ebe7;
+ --navy:#102c2a;--blue:#0f8178;--blue2:#35aa9b;--mint:#e2f4ed;
+ --shadow:0 10px 30px rgba(20,54,47,.065);--radius:20px;
+ --brand:#0f8178;--brand-dark:#096b64;--brand-soft:#e7f5f1;
+ --accent:#e6a23c;--accent-soft:#fff4df;
+}
+html{background:var(--bg)}
+body{background:linear-gradient(180deg,#f8faf7 0%,#f1f5f1 100%);color:var(--ink)}
+.sidebar{background:linear-gradient(180deg,#102e2b 0%,#173e39 100%);box-shadow:8px 0 32px rgba(16,46,43,.10)}
+.brand-mark,.auth-brand-mark{background:linear-gradient(145deg,#54c6b3,#0f8178);box-shadow:0 7px 18px rgba(15,129,120,.24)}
+.nav-label{color:#9bb8b0}
+.nav button{color:#c3d5cf}
+.nav button:hover{background:rgba(255,255,255,.09);color:#fff}
+.nav button.active{background:linear-gradient(100deg,rgba(67,190,166,.25),rgba(67,190,166,.10));color:#fff;box-shadow:inset 3px 0 #69d2bc,0 5px 16px rgba(4,26,23,.12)}
+.sidebar-bottom{color:#a8c0b8;border-color:rgba(255,255,255,.13)}
+.topbar{background:rgba(255,255,255,.88);border-bottom-color:#e4ebe7}
+.search,.field{background:#fff;border-color:#e1e9e5;color:var(--ink)}
+.search:focus,.field:focus{border-color:#55b8a8;box-shadow:0 0 0 3px rgba(15,129,120,.12)}
+.eyebrow,.resource a{color:var(--brand)}
+.avatar{background:linear-gradient(145deg,#e3f4ee,#d2eee5);color:#0c7168;box-shadow:inset 0 0 0 1px #c7e8dc}
+.date-pill{background:#fff;border-color:#e3ebe7;color:#71817d}
+.card{border-color:#e4ebe7;box-shadow:0 8px 26px rgba(20,54,47,.045)}
+.card:hover{border-color:#c9e4da;box-shadow:0 13px 32px rgba(20,74,63,.075)}
+.stat-icon,.quick .qicon,.feature-card .bigicon,.resource-icon{background:linear-gradient(145deg,#eff8f3,#e3f3eb);color:#178477}
+.stat-value{color:#1b3530}
+.btn{background:linear-gradient(135deg,#16998c,#0b756d);box-shadow:0 5px 14px rgba(15,129,120,.17)}
+.btn:hover{background:linear-gradient(135deg,#10877c,#08665f);box-shadow:0 8px 18px rgba(15,129,120,.23)}
+.btn.secondary{background:#e8f5f0;color:#0d756b;box-shadow:none}
+.btn.secondary:hover{background:#d9eee6}
+.btn.ghost{background:#f1f5f2;color:#52655f;box-shadow:none}
+.quick{border-color:#e4ece7;background:linear-gradient(145deg,#fff,#fbfdfb);color:var(--ink)}
+.quick:hover{border-color:#a9d9ca;box-shadow:0 10px 22px rgba(23,112,91,.09)}
+.progress{background:#e8efeb}
+.progress span{background:linear-gradient(90deg,#0f8178,#59c4a7)}
+.tag{background:#edf3ef;color:#52665e}
+.task input{accent-color:var(--brand)}
+.task{border-bottom-color:#edf2ee}
+.resource{border-color:#e6eee9;background:#fff}
+.resource:hover{border-color:#b8dfd0;box-shadow:0 7px 18px rgba(23,112,91,.055)}
+.feature-card{border-color:#e4ece7;background:#fff;box-shadow:0 7px 22px rgba(20,54,47,.035)}
+.feature-card:hover{border-color:#b8dfd0;box-shadow:0 12px 26px rgba(20,74,63,.08)}
+.result{background:#eaf6f1;border-color:#d3eae0;color:#126e62}
+.timer{color:#175b52}
+.quiz-option{border-color:#e2ebe6;background:#fff;color:var(--ink)}
+.quiz-option:hover,.quiz-option.selected{border-color:#82cbb8;background:#eff8f3}
+.toast{background:#153b35;border-color:rgba(255,255,255,.14);color:#f5fffb}
+.mobile-menu{border-color:#e1eae5;background:#fff;color:#24534b}
+.mobile-dock{border-color:rgba(218,234,225,.95)!important;background:rgba(250,253,250,.96)!important;box-shadow:0 12px 34px rgba(18,65,54,.14)!important}
+.mobile-dock button{color:#71857d}
+.mobile-dock button.active{background:#e5f4ed;color:#08776c;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 4px 12px rgba(15,129,120,.10)}
+.auth-screen{background:radial-gradient(circle at 12% 12%,#2c7167 0,transparent 38%),radial-gradient(circle at 90% 90%,#24564f 0,transparent 35%),linear-gradient(135deg,#102c2a,#1c4841)}
+.auth-card{border-color:rgba(255,255,255,.78);background:linear-gradient(145deg,#fff 0%,#fbfdfb 100%)}
+.auth-tabs{background:#edf3ef}
+.auth-tabs button{color:#71817d}
+.auth-tabs button.active{background:#fff;color:#155d53;box-shadow:0 2px 8px rgba(19,63,53,.10)}
+.auth-brand-mark{color:#fff}
+.auth-message{color:#a45c18}
+.password-toggle{color:#526d65}
+.password-toggle:hover{background:#e8f5f0;color:#0b756d}
+.confirm-overlay{background:rgba(8,29,26,.70)}
+.confirm-card{border-color:rgba(255,255,255,.82);background:linear-gradient(145deg,rgba(255,255,255,.99),rgba(237,248,242,.97))}
+.confirm-icon{background:linear-gradient(145deg,#57c9b1,#0f8178 65%,#096b64);box-shadow:0 13px 30px rgba(15,129,120,.28),inset 0 2px 2px rgba(255,255,255,.6)}
+.confirm-card h2{color:#17352f}
+.confirm-card p{color:#667b73}
+.confirm-email{border-color:#cde8dc;background:rgba(255,255,255,.86);color:#0d756b}
+.confirm-resend{color:#0f8178}
+.confirm-close{background:#eaf3ee;color:#536c62}
+.mobile-scrim{background:rgba(8,29,26,.48)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline-color:rgba(15,129,120,.32)}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
