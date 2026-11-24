@@ -39,6 +39,26 @@
 @media(prefers-reduced-motion:reduce){.confirm-card,.confirm-icon,.confirm-card:before{animation:none}.confirm-card{transform:none}.confirm-overlay{transition:none}}
 
 
+
+/* Smooth hover motion — consistent easing on enter and leave */
+:root{--hover-ease:cubic-bezier(.22,.61,.36,1)}
+.nav button,.signout-btn,.btn,.quick,.resource,.feature-card,.card,.quiz-option,.password-toggle,.auth-tabs button,.mobile-dock button,.more-menu button{
+ transition-property:transform,background-color,background,border-color,box-shadow,color,filter,opacity;
+ transition-duration:.32s;
+ transition-timing-function:var(--hover-ease);
+}
+.nav button:hover{transform:translateX(3px)}
+.quick:hover,.feature-card:hover{transform:translateY(-4px)}
+.resource:hover{transform:translateY(-2px)}
+.card:hover{transform:translateY(-2px)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.035)}
+.btn:active,.quick:active,.feature-card:active{transform:translateY(0) scale(.985)}
+.nav button:active,.mobile-dock button:active{transform:scale(.98)}
+@media(prefers-reduced-motion:reduce){
+ .nav button,.signout-btn,.btn,.quick,.resource,.feature-card,.card,.quiz-option,.password-toggle,.auth-tabs button,.mobile-dock button,.more-menu button{transition:none!important}
+ .nav button:hover,.quick:hover,.feature-card:hover,.resource:hover,.card:hover,.btn:hover{transform:none!important}
+}
+
 /* Student Hub visual refresh — responsive desktop, tablet and mobile */
 :root{--bg:#f4f6fb;--surface:#fff;--ink:#17223b;--muted:#71809a;--line:#e7ebf3;--navy:#101b33;--blue:#4b63e8;--blue2:#8192ff;--shadow:0 10px 30px rgba(22,35,66,.055);--radius:20px}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
