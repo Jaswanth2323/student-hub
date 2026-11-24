@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Student Hub — learning, planning and career resources in one place.">
+<meta name="theme-color" content="#101827">
+<title>Student Hub — Your student life, organized</title>
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--ink:#172033;--muted:#69758a;--line:#e7ebf2;--navy:#111c32;--blue:#4263eb;--blue2:#6d83ff;--mint:#dff7ee;--shadow:0 12px 36px rgba(22,34,58,.07);--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:250px 1fr}.sidebar{background:var(--navy);color:#fff;padding:26px 17px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:0 12px 30px;font-size:19px;font-weight:750;letter-spacing:-.5px}.brand-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(145deg,#8ca0ff,#4263eb);display:grid;place-items:center;font-weight:900}.nav-label{color:#7f8ba4;font-size:10px;font-weight:800;letter-spacing:1.5px;padding:15px 13px 8px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#b8c2d5;text-align:left;padding:11px 13px;border-radius:11px;display:flex;align-items:center;gap:12px;font-size:13px}.nav button:hover,.nav button.active{background:#263653;color:#fff}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebar-bottom{margin-top:auto;padding:15px 12px;color:#9eabc1;font-size:12px;border-top:1px solid #2b3850}.main{min-width:0}.topbar{height:76px;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 36px;position:sticky;top:0;z-index:5}.crumb{font-weight:700;font-size:14px}.top-actions{display:flex;align-items:center;gap:12px}.search{width:min(280px,32vw);border:1px solid var(--line);background:#f8f9fc;border-radius:11px;padding:10px 13px;outline:none}.avatar{width:36px;height:36px;border-radius:50%;background:#e8edff;color:#4263eb;display:grid;place-items:center;font-weight:800}.content{max-width:1400px;margin:auto;padding:32px 36px 60px}.welcome{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:26px}.eyebrow{color:var(--blue);font-size:11px;text-transform:uppercase;letter-spacing:1.4px;font-weight:800}.welcome h1{font-size:30px;letter-spacing:-1.2px;margin:5px 0}.welcome p{margin:0;color:var(--muted)}.date-pill{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:12px;color:var(--muted);font-size:12px}.grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:20px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.stat-icon{width:35px;height:35px;border-radius:11px;background:#eef1ff;display:grid;place-items:center}.stat-value{font-size:27px;font-weight:780;letter-spacing:-1px;margin-top:12px}.stat-note{font-size:11px;color:var(--muted);margin-top:2px}.main-grid{grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr)}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-head h2{font-size:16px;margin:0;letter-spacing:-.3px}.subtle{color:var(--muted);font-size:12px}.btn{border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#fff;font-size:12px;font-weight:700}.btn:hover{background:#304fd4}.btn.secondary{background:#eef1ff;color:#3e58d6}.btn.ghost{background:#f3f5f9;color:#526078}.btn.small{padding:7px 10px;font-size:11px}.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.quick{padding:15px;border:1px solid var(--line);border-radius:14px;text-align:left;background:#fff;color:var(--ink);transition:.18s}.quick:hover{border-color:#aab8ff;transform:translateY(-2px)}.quick .qicon{font-size:20px;margin-bottom:9px}.quick strong{display:block;font-size:12px}.quick span{font-size:10px;color:var(--muted)}.task-list{display:grid;gap:10px}.task{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f2f6}.task:last-child{border:0}.task input{accent-color:var(--blue);width:16px;height:16px}.task .task-name{flex:1;font-size:12px}.task.done .task-name{text-decoration:line-through;color:#9aa3b2}.tag{font-size:10px;color:#53617a;background:#f2f4f8;padding:4px 7px;border-radius:7px}.progress{height:7px;background:#edf0f6;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#4263eb,#8b9cff);border-radius:20px}.resource-list{display:grid;gap:10px}.resource{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:13px}.resource-icon{width:38px;height:38px;border-radius:12px;background:#f0f3ff;display:grid;place-items:center;font-size:17px}.resource-info{flex:1;min-width:0}.resource-info strong{display:block;font-size:12px}.resource-info span{font-size:10px;color:var(--muted)}a{color:inherit;text-decoration:none}.resource a{color:var(--blue);font-size:11px;font-weight:700}.page{display:none}.page.active{display:block}.page-title{margin-bottom:22px}.page-title h1{font-size:27px;letter-spacing:-1px;margin:0 0 5px}.page-title p{margin:0;color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:17px}.field{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 12px;outline:none;color:var(--ink)}.field:focus,.search:focus{border-color:#8ea0ff;box-shadow:0 0 0 3px #4263eb18}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.feature-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;min-height:170px}.feature-card .bigicon{font-size:23px;margin-bottom:12px}.feature-card h3{font-size:14px;margin:0 0 5px}.feature-card p{font-size:11px;color:var(--muted);margin:0 0 15px;flex:1}.feature-card a,.feature-card button{align-self:flex-start}.tool-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.form-row{display:grid;gap:6px;margin:12px 0}.form-row label{font-size:11px;color:var(--muted);font-weight:700}.form-row input,.form-row select{width:100%}.result{margin-top:14px;padding:13px;background:#f1f4ff;border-radius:12px;font-weight:700;color:#344fca}.timer{font-size:54px;font-weight:800;letter-spacing:-2px;text-align:center;padding:22px 0}.timer-controls{display:flex;justify-content:center;gap:8px}.quiz-option{display:block;width:100%;text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;margin:8px 0;font-size:12px}.quiz-option.selected{border-color:var(--blue);background:#f3f5ff}.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}.footer{color:#98a1b1;font-size:10px;text-align:center;padding:35px 0 0}.toast{position:fixed;bottom:22px;right:22px;background:#17243b;color:#fff;padding:12px 16px;border-radius:11px;font-size:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;z-index:20}.toast.show{opacity:1;transform:none}.mobile-menu{display:none}
+@media(max-width:1050px){.app{grid-template-columns:210px 1fr}.stats{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.content{padding:26px 24px}}
+@media(max-width:760px){.app{display:block}.sidebar{position:fixed;left:-260px;width:250px;z-index:15;transition:.25s;box-shadow:var(--shadow)}.sidebar.open{left:0}.topbar{padding:0 16px;height:65px}.mobile-menu{display:block;border:0;background:#f0f2f8;border-radius:9px;padding:8px 10px}.crumb{margin-right:auto;margin-left:10px}.search{width:38vw}.content{padding:23px 16px 45px}.welcome{align-items:flex-start;flex-direction:column}.welcome h1{font-size:26px}.main-grid,.tool-layout{grid-template-columns:1fr}.quick-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr 1fr}.date-pill{display:none}}
+@media(max-width:420px){.stats{gap:10px}.card{padding:15px}.stat-value{font-size:23px}.cards{grid-template-columns:1fr}.quick-grid{grid-template-columns:1fr 1fr}.search{width:34vw}.top-actions{gap:7px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><span class="brand-mark">S</span> Student Hub</div>
+  <div class="nav-label">WORKSPACE</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">⌂</span>Overview</button>
+    <button data-page="learn"><span class="ico">▤</span>Learn & Resources</button>
+    <button data-page="career"><span class="ico">↗</span>Career & Placements</button>
+    <button data-page="practice"><span class="ico">✎</span>Practice & Quizzes</button>
+    <button data-page="planner"><span class="ico">☷</span>Study Planner</button>
+  </nav>
+  <div class="nav-label">STUDENT TOOLS</div>
+  <nav class="nav">
+    <button data-page="tools"><span class="ico">⌘</span>Calculators & Tools</button>
+    <button data-page="opportunities"><span class="ico">✦</span>Scholarships</button>
+    <button data-page="profile"><span class="ico">◎</span>My Profile</button>
+  </nav>
+  <div class="sidebar-bottom">A clearer path to your next goal.<br>Built for students, by design.</div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <button class="mobile-menu" id="menuBtn">☰</button><div class="crumb" id="crumb">Overview</div>
+  <div class="top-actions"><input class="search" id="globalSearch" placeholder="Search resources..." aria-label="Search resources"><div class="avatar" id="avatar">S</div></div>
+</header>
+<div class="content">
+<section class="page active" id="page-dashboard">
+  <div class="welcome"><div><div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div><h1>Make today count<span style="color:#4263eb">.</span></h1><p>Everything you need to learn, prepare and move forward.</p></div><div class="date-pill" id="today"></div></div>
+  <div class="grid stats">
+    <div class="card"><div class="stat-top">Tasks completed <span class="stat-icon">✓</span></div><div class="stat-value" id="statDone">0</div><div class="stat-note">Keep building momentum</div></div>
+    <div class="card"><div class="stat-top">Pending tasks <span class="stat-icon">◷</span></div><div class="stat-value" id="statPending">0</div><div class="stat-note">Your next steps</div></div>
+    <div class="card"><div class="stat-top">Learning resources <span class="stat-icon">▤</span></div><div class="stat-value">20+</div><div class="stat-note">Curated free starting points</div></div>
+    <div class="card"><div class="stat-top">Focus sessions <span class="stat-icon">◉</span></div><div class="stat-value" id="statSessions">0</div><div class="stat-note">Completed on this device</div></div>
+  </div>
+  <div class="grid main-grid">
+    <div class="grid" style="align-content:start">
+      <div class="card"><div class="section-head"><h2>Quick access</h2><span class="subtle">Your everyday toolkit</span></div><div class="quick-grid">
+        <button class="quick" data-go="planner"><div class="qicon">☷</div><strong>Study planner</strong><span>Organize your day</span></button>
+        <button class="quick" data-go="tools"><div class="qicon">∑</div><strong>CGPA calculator</strong><span>Know your score</span></button>
+        <button class="quick" data-go="practice"><div class="qicon">✎</div><strong>Aptitude practice</strong><span>Test your skills</span></button>
+        <button class="quick" data-go="learn"><div class="qicon">▤</div><strong>Free courses</strong><span>Learn something new</span></button>
+        <button class="quick" data-go="career"><div class="qicon">↗</div><strong>Career prep</strong><span>Prepare for jobs</span></button>
+        <button class="quick" data-go="tools"><div class="qicon">◷</div><strong>Focus timer</strong><span>Work with intention</span></button>
+      </div></div>
+      <div class="card"><div class="section-head"><h2>Today's study plan</h2><button class="btn secondary small" data-go="planner">Manage tasks</button></div><div id="dashboardTasks" class="task-list"><div class="empty">No tasks yet. Add your first task in Study Planner.</div></div></div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="card"><div class="section-head"><h2>Continue learning</h2><span class="subtle">Free resources</span></div><div class="resource-list">
+        <div class="resource"><div class="resource-icon">💻</div><div class="resource-info"><strong>freeCodeCamp</strong><span>Programming & web development</span></div><a href="https://www.freecodecamp.org/" target="_blank" rel="noopener">Explore ↗</a></div>
+        <div class="resource"><div class="resource-icon">🎓</div><div class="resource-info"><strong>NPTEL</strong><span>Engineering courses from India</span></div><a href="https://nptel.ac.in/" target="_blank" rel="noopener">Explore ↗</a></div>
+        <div class="resource"><div class="resource-icon">📘</div><div class="resource-info"><strong>Khan Academy</strong><span>Math, science and more</span></div><a href="https://www.khanacademy.org/" target="_blank" rel="noopener">Explore ↗</a></div>
+      </div></div>
+      <div class="card"><div class="section-head"><h2>Weekly consistency</h2><span class="subtle">Task completion</span></div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:9px"><span>Completed tasks</span><strong id="progressText">0%</strong></div><div class="progress"><span id="progressBar" style="width:0%"></span></div><p class="subtle" style="margin:12px 0 0">Small, consistent steps beat last-minute cramming.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-learn">
+ <div class="page-title"><div class="eyebrow">EXPLORE & GROW</div><h1>Learn & Resources</h1><p>Discover reputable learning platforms and open educational resources.</p></div>
+ <div class="toolbar"><input class="field" id="resourceSearch" placeholder="Search courses, topics, platforms..."><select class="field" id="resourceCategory"><option value="all">All categories</option><option>Programming</option><option>Engineering</option><option>School</option><option>Academic</option><option>General</option></select></div>
+ <div class="cards" id="resourceCards"></div>
+ <p class="subtle" style="margin-top:16px">Availability, pricing and certificates are controlled by each provider. Check provider terms before enrolling.</p>
+</section>
+
+<section class="page" id="page-career">
+ <div class="page-title"><div class="eyebrow">PREPARE FOR WHAT'S NEXT</div><h1>Career & Placements</h1><p>Build job-ready skills and explore trusted career preparation platforms.</p></div>
+ <div class="cards" id="careerCards"></div>
+</section>
+
+<section class="page" id="page-practice">
+ <div class="page-title"><div class="eyebrow">PRACTICE MAKES PROGRESS</div><h1>Practice & Quizzes</h1><p>Try a short aptitude quiz. Your score is calculated locally.</p></div>
+ <div class="tool-layout"><div class="card"><div class="section-head"><h2>Quick aptitude quiz</h2><span class="tag" id="quizCount">Question 1 of 5</span></div><h3 id="question" style="font-size:17px;line-height:1.4">Loading question...</h3><div id="options"></div><div class="section-head" style="margin-top:18px"><span class="subtle" id="quizFeedback">Choose one answer.</span><button class="btn" id="nextQuestion">Next question</button></div></div>
+ <div class="card"><h2 style="font-size:16px;margin-top:0">Practice platforms</h2><div class="resource-list">
+ <div class="resource"><div class="resource-icon">🧠</div><div class="resource-info"><strong>IndiaBix</strong><span>Aptitude, reasoning and verbal practice</span></div><a href="https://www.indiabix.com/" target="_blank" rel="noopener">Open ↗</a></div>
+ <div class="resource"><div class="resource-icon">⌨️</div><div class="resource-info"><strong>HackerRank</strong><span>Programming and technical skills</span></div><a href="https://www.hackerrank.com/" target="_blank" rel="noopener">Open ↗</a></div>
+ <div class="resource"><div class="resource-icon">🧩</div><div class="resource-info"><strong>LeetCode</strong><span>Algorithm and coding interview practice</span></div><a href="https://leetcode.com/" target="_blank" rel="noopener">Open ↗</a></div>
+ </div></div></div>
+</section>
+
+<section class="page" id="page-planner">
+ <div class="page-title"><div class="eyebrow">PLAN WITH PURPOSE</div><h1>Study Planner</h1><p>Add tasks, set due dates and track completion. Your tasks stay on this device.</p></div>
+ <div class="tool-layout"><div class="card"><h2 style="font-size:16px;margin-top:0">Add a study task</h2><form id="taskForm"><div class="form-row"><label for="taskTitle">Task name</label><input class="field" id="taskTitle" required maxlength="100" placeholder="e.g. Revise Data Structures"></div><div class="form-row"><label for="taskDate">Due date</label><input class="field" id="taskDate" type="date"></div><div class="form-row"><label for="taskPriority">Priority</label><select class="field" id="taskPriority"><option>Normal</option><option>High</option><option>Low</option></select></div><button class="btn" type="submit">Add task +</button></form></div>
+ <div class="card"><div class="section-head"><h2>Your tasks</h2><select class="field" id="taskFilter" style="padding:7px"><option value="all">All tasks</option><option value="pending">Pending</option><option value="done">Completed</option></select></div><div id="taskList" class="task-list"></div></div></div>
+</section>
+
+<section class="page" id="page-tools">
+ <div class="page-title"><div class="eyebrow">MAKE THE MATH EASIER</div><h1>Calculators & Tools</h1><p>Useful everyday tools for academic planning and focused study.</p></div>
+ <div class="tool-layout">
+ <div class="card"><h2 style="font-size:16px;margin-top:0">CGPA to percentage</h2><p class="subtle">Enter your CGPA and the conversion multiplier prescribed by your institution.</p><div class="form-row"><label>CGPA</label><input class="field" type="number" id="cgpa" min="0" max="10" step=".01" placeholder="e.g. 8.25"></div><div class="form-row"><label>Multiplier</label><input class="field" type="number" id="multiplier" min="1" max="20" step=".01" value="9.5"></div><button class="btn" id="calcCgpa">Calculate</button><div class="result" id="cgpaResult" style="display:none"></div><p class="subtle">There is no universal CGPA conversion formula. Verify your university's official rule.</p></div>
+ <div class="card"><h2 style="font-size:16px;margin-top:0">Pomodoro focus timer</h2><p class="subtle">A focused 25-minute session followed by a short break.</p><div class="timer" id="timer">25:00</div><div class="timer-controls"><button class="btn" id="timerStart">Start</button><button class="btn secondary" id="timerPause">Pause</button><button class="btn ghost" id="timerReset">Reset</button></div><div class="subtle" style="text-align:center;margin-top:14px" id="timerStatus">Ready when you are.</div></div>
+ <div class="card"><h2 style="font-size:16px;margin-top:0">Percentage calculator</h2><div class="form-row"><label>Marks obtained</label><input class="field" id="marks" type="number" min="0" placeholder="e.g. 425"></div><div class="form-row"><label>Total marks</label><input class="field" id="totalMarks" type="number" min="1" placeholder="e.g. 500"></div><button class="btn" id="calcMarks">Calculate percentage</button><div class="result" id="marksResult" style="display:none"></div></div>
+ <div class="card"><h2 style="font-size:16px;margin-top:0">Quick study guidance</h2><div class="resource-list"><div class="resource"><div class="resource-icon">🎯</div><div class="resource-info"><strong>Set one clear goal</strong><span>Define the outcome for your next study block.</span></div></div><div class="resource"><div class="resource-icon">⏳</div><div class="resource-info"><strong>Work in focused blocks</strong><span>Remove distractions and take deliberate breaks.</span></div></div><div class="resource"><div class="resource-icon">🔁</div><div class="resource-info"><strong>Review actively</strong><span>Use recall and practice instead of rereading alone.</span></div></div></div></div>
+ </div>
+</section>
+
+<section class="page" id="page-opportunities">
+ <div class="page-title"><div class="eyebrow">FIND YOUR NEXT OPPORTUNITY</div><h1>Scholarships & Opportunities</h1><p>Start with official Indian portals. Eligibility and deadlines vary by scheme.</p></div>
+ <div class="cards" id="opportunityCards"></div>
+</section>
+
+<section class="page" id="page-profile">
+ <div class="page-title"><div class="eyebrow">YOUR SPACE</div><h1>My Profile</h1><p>Personalize your Student Hub experience on this device.</p></div>
+ <div class="card" style="max-width:600px"><div class="form-row"><label>Your display name</label><input class="field" id="profileName" maxlength="40" placeholder="What should we call you?"></div><div class="form-row"><label>Student category</label><select class="field" id="profileType"><option>School student</option><option>College student</option><option>Competitive exam aspirant</option><option>Graduate / Job seeker</option><option>Other learner</option></select></div><button class="btn" id="saveProfile">Save profile</button><p class="subtle" style="margin-top:14px">This starter version stores your profile locally in your browser. It is not synced across devices.</p></div>
+</section>
+<div class="footer">STUDENT HUB · LEARN BETTER. PLAN SMARTER. MOVE FORWARD.</div>
+</div></main></div><div class="toast" id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{return JSON.parse(localStorage.getItem('sh_'+k))??d}catch{return d}},set(k,v){localStorage.setItem('sh_'+k,JSON.stringify(v))}};
+const resources=[
+['freeCodeCamp','Programming','Free coding lessons, projects and certifications in web development and programming.','https://www.freecodecamp.org/','💻'],
+['The Odin Project','Programming','Open-source full-stack web development curriculum.','https://www.theodinproject.com/','🧑‍💻'],
+['CS50 by Harvard','Programming','Computer science introduction and related courses.','https://cs50.harvard.edu/','🎓'],
+['NPTEL','Engineering','Engineering, science and management courses from Indian institutions.','https://nptel.ac.in/','🏛️'],
+['SWAYAM','Academic','Government of India online courses across disciplines.','https://swayam.gov.in/','🇮🇳'],
+['National Digital Library of India','Academic','Search learning resources from the national digital library.','https://ndl.iitkgp.ac.in/','📚'],
+['MIT OpenCourseWare','Academic','Open course materials from MIT.','https://ocw.mit.edu/','🏫'],
+['OpenStax','School','Free peer-reviewed textbooks for many subjects.','https://openstax.org/','📖'],
+['Khan Academy','School','Free lessons and practice in math, science and more.','https://www.khanacademy.org/','🧠'],
+['PhET Simulations','School','Interactive science and mathematics simulations.','https://phet.colorado.edu/','⚗️'],
+['MDN Web Docs','Programming','Documentation and guides for web technologies.','https://developer.mozilla.org/','🌐'],
+['Python Official Tutorial','Programming','Official Python language tutorial and documentation.','https://docs.python.org/3/tutorial/','🐍'],
+['W3Schools','Programming','Beginner-friendly web development tutorials and references.','https://www.w3schools.com/','🧩'],
+['Google Scholar','Academic','Search scholarly literature and research publications.','https://scholar.google.com/','🔎'],
+['DOAJ','Academic','Directory of open access journals.','https://doaj.org/','📰'],
+['NCERT','School','Official school textbooks and educational materials.','https://ncert.nic.in/','📘'],
+['DIKSHA','School','National digital infrastructure for school education.','https://diksha.gov.in/','📱'],
+['GeeksforGeeks','Programming','Computer science topics, tutorials and practice.','https://www.geeksforgeeks.org/','💡'],
+['SQLBolt','Programming','Interactive SQL lessons and exercises.','https://sqlbolt.com/','🗃️'],
+['GitHub Skills','Programming','Hands-on interactive courses for GitHub workflows.','https://skills.github.com/','🐙']
+];
+const careers=[
+['National Career Service','Government career portal for jobs, career services and guidance.','https://www.ncs.gov.in/','🇮🇳'],
+['AICTE Internship Portal','Explore internship opportunities listed through AICTE.','https://internship.aicte-india.org/','🎯'],
+['Internshala','Explore internships and entry-level opportunities; check listing terms.','https://internshala.com/','💼'],
+['LinkedIn Jobs','Discover jobs, internships and professional networking opportunities.','https://www.linkedin.com/jobs/','🔗'],
+['HackerRank','Practice coding and technical interview skills.','https://www.hackerrank.com/','⌨️'],
+['LeetCode','Practice data structures, algorithms and coding interviews.','https://leetcode.com/','🧩'],
+['IndiaBix','Practice aptitude, reasoning, verbal ability and technical questions.','https://www.indiabix.com/','🧠'],
+['GitHub','Build a public portfolio and collaborate on projects.','https://github.com/','🐙'],
+['Resume.io','Explore resume templates and resume-building guidance; check free-tier limits.','https://resume.io/','📄']
+];
+const opportunities=[
+['National Scholarship Portal','Official central portal for many government scholarship schemes.','https://scholarships.gov.in/','🇮🇳'],
+['National Scholarships (UGC)','University Grants Commission scholarship and fellowship information.','https://www.ugc.gov.in/','🎓'],
+['AICTE','Official technical education updates, schemes and student resources.','https://www.aicte-india.org/','🏛️'],
+['NSP OTR','Official One Time Registration and scholarship application access.','https://scholarships.gov.in/','📝'],
+['myScheme','Discover government schemes and check eligibility information.','https://www.myscheme.gov.in/','🔎'],
+['National Career Service','Career guidance, job services and employment resources.','https://www.ncs.gov.in/','💼']
+];
+function toast(msg){let t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
+function go(page){$$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#crumb').textContent=({dashboard:'Overview',learn:'Learn & Resources',career:'Career & Placements',practice:'Practice & Quizzes',planner:'Study Planner',tools:'Calculators & Tools',opportunities:'Scholarships',profile:'My Profile'})[page]||'Student Hub';$('#sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'})}
+$$('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));$$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));$('#menuBtn').onclick=()=>$('#sidebar').classList.toggle('open');
+$('#today').textContent=new Intl.DateTimeFormat('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
+function cards(data,container,kind){$(container).innerHTML=data.map((r,i)=>`<article class="feature-card" data-search="${(r.join(' ')+' '+kind).toLowerCase()}"><div class="bigicon">${r[4]||r[3]||'✦'}</div><h3>${r[0]}</h3><p>${r[2]||r[1]}</p><a class="btn secondary small" href="${r[3]||r[2]}" target="_blank" rel="noopener">Visit resource ↗</a></article>`).join('')}
+function renderResources(){let q=($('#resourceSearch').value||'').toLowerCase(),cat=$('#resourceCategory').value;let list=resources.filter(r=>(cat==='all'||r[1]===cat)&&r.join(' ').toLowerCase().includes(q));$('#resourceCards').innerHTML=list.map(r=>`<article class="feature-card"><div class="bigicon">${r[4]}</div><h3>${r[0]}</h3><p>${r[2]}</p><a class="btn secondary small" href="${r[3]}" target="_blank" rel="noopener">Visit resource ↗</a></article>`).join('')||'<div class="empty">No matching resources. Try another search.</div>'}
+$('#resourceSearch').addEventListener('input',renderResources);$('#resourceCategory').addEventListener('change',renderResources);renderResources();
+function simpleCards(data,id){$(id).innerHTML=data.map(r=>`<article class="feature-card"><div class="bigicon">${r[3]}</div><h3>${r[0]}</h3><p>${r[1]}</p><a class="btn secondary small" href="${r[2]}" target="_blank" rel="noopener">Visit official site ↗</a></article>`).join('')}
+simpleCards(careers,'#careerCards');simpleCards(opportunities,'#opportunityCards');
+let tasks=store.get('tasks',[]);
+function saveTasks(){store.set('tasks',tasks);renderTasks();updateStats()}
+function taskMarkup(t){return `<div class="task ${t.done?'done':''}"><input type="checkbox" data-task="${t.id}" ${t.done?'checked':''} aria-label="Complete task"><div class="task-name">${escapeHtml(t.title)} <span class="tag">${t.priority}</span><div class="subtle">${t.date||'No due date'}</div></div><button class="btn ghost small" data-delete="${t.id}" aria-label="Delete task">✕</button></div>`}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderTasks(){let filter=$('#taskFilter')?.value||'all',list=tasks.filter(t=>filter==='all'||(filter==='done'?t.done:!t.done));$('#taskList').innerHTML=list.map(taskMarkup).join('')||'<div class="empty">Nothing here yet. Add a task to get started.</div>';let dash=tasks.filter(t=>!t.done).slice(0,4);$('#dashboardTasks').innerHTML=dash.map(taskMarkup).join('')||'<div class="empty">No pending tasks. Add your first task in Study Planner.</div>';$$('[data-task]').forEach(el=>el.onchange=()=>{let t=tasks.find(x=>x.id===el.dataset.task);if(t)t.done=el.checked;saveTasks()});$$('[data-delete]').forEach(el=>el.onclick=()=>{tasks=tasks.filter(x=>x.id!==el.dataset.delete);saveTasks();toast('Task deleted')})}
+$('#taskForm').onsubmit=e=>{e.preventDefault();tasks.unshift({id:crypto.randomUUID(),title:$('#taskTitle').value.trim(),date:$('#taskDate').value,priority:$('#taskPriority').value,done:false});e.target.reset();saveTasks();toast('Task added')};$('#taskFilter').onchange=renderTasks;
+function updateStats(){let done=tasks.filter(t=>t.done).length,pending=tasks.length-done,percent=tasks.length?Math.round(done/tasks.length*100):0;$('#statDone').textContent=done;$('#statPending').textContent=pending;$('#progressText').textContent=percent+'%';$('#progressBar').style.width=percent+'%';$('#statSessions').textContent=store.get('sessions',0)}
+renderTasks();updateStats();
+$('#calcCgpa').onclick=()=>{let c=Number($('#cgpa').value),m=Number($('#multiplier').value);if($('#cgpa').value===''||c<0||c>10||m<=0){toast('Enter a valid CGPA (0–10) and multiplier');return}let p=c*m;$('#cgpaResult').style.display='block';$('#cgpaResult').textContent=`Estimated percentage: ${p.toFixed(2)}%`;};
+$('#calcMarks').onclick=()=>{let a=Number($('#marks').value),b=Number($('#totalMarks').value);if($('#marks').value===''||$('#totalMarks').value===''||a<0||b<=0||a>b){toast('Enter valid marks (obtained cannot exceed total)');return}$('#marksResult').style.display='block';$('#marksResult').textContent=`Percentage: ${(a/b*100).toFixed(2)}%`};
+let seconds=1500,timerId=null;function showTimer(){$('#timer').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')}$('#timerStart').onclick=()=>{if(timerId)return;$('#timerStatus').textContent='Focus session in progress';timerId=setInterval(()=>{seconds--;showTimer();if(seconds<=0){clearInterval(timerId);timerId=null;store.set('sessions',store.get('sessions',0)+1);updateStats();$('#timerStatus').textContent='Session complete. Take a short break.';toast('Focus session complete!')}},1000)};$('#timerPause').onclick=()=>{clearInterval(timerId);timerId=null;$('#timerStatus').textContent='Paused'};$('#timerReset').onclick=()=>{clearInterval(timerId);timerId=null;seconds=1500;showTimer();$('#timerStatus').textContent='Ready when you are.'};showTimer();
+const quiz=[['A train travels 120 km in 2 hours. What is its average speed?',['40 km/h','50 km/h','60 km/h','80 km/h'],2],['What is 15% of 200?',['15','20','30','35'],2],['Find the next number: 2, 4, 8, 16, __',['18','24','30','32'],3],['If 5 workers finish a task in 10 days, how many worker-days is the task?',['15','25','50','100'],2],['A number increased by 20% becomes 120. What was the original number?',['90','96','100','110'],2]];
+let qi=0,answers={},submitted=false;function renderQuiz(){let q=quiz[qi];$('#quizCount').textContent=`Question ${qi+1} of ${quiz.length}`;$('#question').textContent=q[0];$('#options').innerHTML=q[1].map((v,i)=>`<button class="quiz-option ${answers[qi]===i?'selected':''}" data-opt="${i}">${String.fromCharCode(65+i)}. ${v}</button>`).join('');$$('[data-opt]').forEach(b=>b.onclick=()=>{if(submitted)return;answers[qi]=Number(b.dataset.opt);renderQuiz()});$('#quizFeedback').textContent=submitted?`Quiz complete. Score: ${quiz.filter((q,i)=>answers[i]===q[2]).length}/${quiz.length}`:'Choose one answer.';$('#nextQuestion').textContent=qi===quiz.length-1?(submitted?'Try again':'Finish quiz'):'Next question'}
+$('#nextQuestion').onclick=()=>{if(qi<quiz.length-1){if(answers[qi]===undefined){toast('Choose an answer first');return}qi++;renderQuiz()}else if(!submitted){if(answers[qi]===undefined){toast('Choose an answer first');return}submitted=true;renderQuiz()}else{qi=0;answers={};submitted=false;renderQuiz()}};renderQuiz();
+let profile=store.get('profile',{name:'',type:'College student'});$('#profileName').value=profile.name;$('#profileType').value=profile.type;$('#avatar').textContent=(profile.name||'S').trim()[0].toUpperCase();$('#saveProfile').onclick=()=>{profile={name:$('#profileName').value.trim(),type:$('#profileType').value};store.set('profile',profile);$('#avatar').textContent=(profile.name||'S')[0].toUpperCase();toast('Profile saved on this device')};
+$('#globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){go('learn');$('#resourceSearch').value=e.target.value;renderResources();}});
+</script></body></html>
