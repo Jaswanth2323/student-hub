@@ -388,10 +388,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .password-wrap .password-toggle:hover{background:#e8f5f0;color:#096b64}
 .password-wrap .password-toggle:active{transform:translateY(-50%) scale(.96)}
 
-/* Keep both authentication tabs clickable above decorative effects */
-.auth-tabs{position:relative;z-index:5;isolation:isolate;pointer-events:auto}
-.auth-tabs button{position:relative;z-index:1;pointer-events:auto;touch-action:manipulation;cursor:pointer}
-.auth-tabs button::before,.auth-tabs button::after{pointer-events:none!important}
+/* Stable authentication tabs: no decorative overlay or clipped click area */
+.auth-tabs{position:relative;z-index:2;isolation:auto;pointer-events:auto;overflow:visible}
+.auth-tabs button{position:relative;z-index:2;display:block;min-height:42px;width:100%;pointer-events:auto;touch-action:manipulation;cursor:pointer;overflow:visible}
+.auth-tabs button::after{display:none!important;pointer-events:none!important}
 .auth-tabs button:focus-visible{outline:2px solid #0f8178;outline-offset:2px}
 </style>
 </head>
@@ -665,7 +665,7 @@ let supabaseClient=null, currentUser=null, authMode='login', cloudSaveTimer=null
 const authScreen=$('#authScreen'), studentApp=$('#studentApp');
 function authMessage(message,isError=true){const el=$('#authMessage');el.textContent=message;el.style.color=isError?'#b54708':'#16804a'}
 function setAuthMode(mode){authMode=mode;const signup=mode==='signup';$('#loginTab').classList.toggle('active',!signup);$('#signupTab').classList.toggle('active',signup);$('#nameRow').classList.toggle('hidden',!signup);$('#authTitle').textContent=signup?'Create your account':'Welcome back';$('#authSubtitle').textContent=signup?'Sign up to save your study plan and profile securely.':'Log in to access your student dashboard and keep your data synced.';$('#authSubmit').textContent=signup?'Create account':'Log in';$('#authPassword').autocomplete=signup?'new-password':'current-password';authMessage('')}
-$('#loginTab').onclick=()=>setAuthMode('login');$('#signupTab').onclick=()=>setAuthMode('signup');
+$('#loginTab').addEventListener('click',e=>{e.preventDefault();setAuthMode('login')});$('#signupTab').addEventListener('click',e=>{e.preventDefault();setAuthMode('signup')});
 function showConfirmation(email){$('#confirmEmail').textContent=email;$('#confirmOverlay').classList.remove('hidden');$('#confirmDone').focus()}
 function hideConfirmation(){$('#confirmOverlay').classList.add('hidden')}
 $('#togglePassword').onclick=()=>{const field=$('#authPassword'),btn=$('#togglePassword'),visible=field.type==='password';field.type=visible?'text':'password';btn.textContent=visible?'Hide':'Show';btn.setAttribute('aria-label',visible?'Hide password':'Show password');btn.setAttribute('aria-pressed',String(visible))};
