@@ -410,6 +410,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
     <button data-page="career"><span class="ico">↗</span>Career & Placements</button>
     <button data-page="practice"><span class="ico">✎</span>Practice & Quizzes</button>
     <button data-page="planner"><span class="ico">☷</span>Study Planner</button>
+    <button data-page="upsc"><span class="ico">🇮🇳</span>UPSC Preparation</button>
   </nav>
   <div class="nav-label">STUDENT TOOLS</div>
   <nav class="nav">
@@ -495,6 +496,35 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  </div>
 </section>
 
+<section class="page" id="page-upsc">
+ <div class="page-title"><div class="eyebrow">CIVIL SERVICES PREPARATION</div><h1>UPSC Preparation Hub</h1><p>Plan your syllabus, track daily study, revise current affairs and practise answer writing. Starter tools—not a substitute for the official syllabus or exam notifications.</p></div>
+ <div class="grid stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+  <div class="card"><div class="stat-top">Syllabus topics done <span class="stat-icon">✓</span></div><div class="stat-value" id="upscDoneCount">0</div><div class="stat-note" id="upscProgressLabel">0% of tracked topics</div></div>
+  <div class="card"><div class="stat-top">Current affairs notes <span class="stat-icon">📰</span></div><div class="stat-value" id="upscNotesCount">0</div><div class="stat-note">Saved on this browser</div></div>
+  <div class="card"><div class="stat-top">Today's study target <span class="stat-icon">⏱</span></div><div class="stat-value" id="upscHoursLabel">0 / 6 hrs</div><div class="stat-note">Update your completed hours below</div></div>
+ </div>
+ <div class="cards" style="margin-bottom:16px">
+  <article class="feature-card"><div class="bigicon">🗂️</div><h3>GS syllabus tracker</h3><p>Tick off core areas as you study. This is a compact starter checklist, not the complete UPSC syllabus.</p><button class="btn secondary small" type="button" data-upsc-scroll="upscSyllabus">Open tracker ↓</button></article>
+  <article class="feature-card"><div class="bigicon">📰</div><h3>Current affairs journal</h3><p>Save issue-based notes with a date, subject and concise takeaway for revision.</p><button class="btn secondary small" type="button" data-upsc-scroll="upscCurrentForm">Add a note ↓</button></article>
+  <article class="feature-card"><div class="bigicon">✍️</div><h3>Mains answer practice</h3><p>Draft an answer and monitor word count against a 150- or 250-word target.</p><button class="btn secondary small" type="button" data-upsc-scroll="upscAnswer">Practise now ↓</button></article>
+ </div>
+ <div class="tool-layout">
+  <div class="card" id="upscSyllabus"><div class="section-head"><h2>GS syllabus tracker</h2><span class="tag" id="upscSyllabusPercent">0%</span></div><p class="subtle">Mark a topic complete only after you have studied it and attempted recall or questions.</p><div class="progress"><span id="upscSyllabusBar" style="width:0%"></span></div><div id="upscSyllabusList" class="task-list" style="margin-top:14px"></div></div>
+  <div class="card"><h2 style="font-size:16px;margin-top:0">Daily study target</h2><p class="subtle">Set a realistic target and update completed hours. This tracker is manual; it does not measure screen time.</p><div class="form-row"><label for="upscTargetHours">Target hours per day</label><input class="field" id="upscTargetHours" type="number" min="1" max="16" value="6"></div><div class="form-row"><label for="upscCompletedHours">Hours completed today</label><input class="field" id="upscCompletedHours" type="number" min="0" max="16" step=".5" value="0"></div><button class="btn" id="saveUpscHours" type="button">Save today's progress</button><div class="result" id="upscHoursResult" aria-live="polite">Set your target and log your study hours.</div></div>
+  <div class="card" id="upscCurrentForm"><h2 style="font-size:16px;margin-top:0">Current affairs journal</h2><p class="subtle">Write issue-based notes: background, stakeholders, challenges, constitutional or policy angle, and way forward.</p><form id="upscNoteForm"><div class="form-row"><label for="upscNoteDate">Date</label><input class="field" id="upscNoteDate" type="date" required></div><div class="form-row"><label for="upscNoteSubject">Subject</label><select class="field" id="upscNoteSubject"><option>Polity & Governance</option><option>Economy</option><option>International Relations</option><option>Environment</option><option>Science & Technology</option><option>Social Issues</option><option>Security</option><option>Other</option></select></div><div class="form-row"><label for="upscNoteTitle">Issue / headline</label><input class="field" id="upscNoteTitle" maxlength="120" required placeholder="e.g. Urban flood management"></div><div class="form-row"><label for="upscNoteBody">Your concise notes</label><textarea class="field" id="upscNoteBody" rows="4" maxlength="3000" required placeholder="Key facts, causes, impact, examples and way forward..."></textarea></div><button class="btn" type="submit">Save current affairs note</button></form><div id="upscNotesList" class="task-list" style="margin-top:14px"></div></div>
+  <div class="card" id="upscAnswer"><h2 style="font-size:16px;margin-top:0">Mains answer-writing practice</h2><p class="subtle">Use a clear introduction, structured body, relevant examples/data and a balanced conclusion. Word count is approximate.</p><div class="form-row"><label for="upscAnswerPrompt">Question / prompt</label><textarea class="field" id="upscAnswerPrompt" rows="2" maxlength="500" placeholder="Paste or write a practice question..."></textarea></div><div class="form-row"><label for="upscAnswerTarget">Word target</label><select class="field" id="upscAnswerTarget"><option value="150">150 words</option><option value="250">250 words</option></select></div><div class="form-row"><label for="upscAnswerText">Your answer</label><textarea class="field" id="upscAnswerText" rows="8" maxlength="6000" placeholder="Write your answer here..."></textarea></div><div class="section-head"><span class="subtle" id="upscWordCount">0 words</span><span class="tag" id="upscWordStatus">Not started</span></div><button class="btn secondary" id="clearUpscAnswer" type="button">Clear draft</button></div>
+  <div class="card"><h2 style="font-size:16px;margin-top:0">Official & useful resources</h2><p class="subtle">Prioritize official documents and primary sources. Always verify exam rules, dates and syllabus from UPSC.</p><div class="resource-list">
+   <div class="resource"><div class="resource-icon">🏛️</div><div class="resource-info"><strong>UPSC official website</strong><span>Notifications, calendar, syllabus and previous papers</span></div><a href="https://upsc.gov.in/" target="_blank" rel="noopener">Open ↗</a></div>
+   <div class="resource"><div class="resource-icon">📚</div><div class="resource-info"><strong>NCERT textbooks</strong><span>School textbooks for foundational concepts</span></div><a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">Open ↗</a></div>
+   <div class="resource"><div class="resource-icon">📢</div><div class="resource-info"><strong>Press Information Bureau</strong><span>Government releases and policy announcements</span></div><a href="https://pib.gov.in/" target="_blank" rel="noopener">Open ↗</a></div>
+   <div class="resource"><div class="resource-icon">⚖️</div><div class="resource-info"><strong>PRS Legislative Research</strong><span>Bill summaries, policy and legislative analysis</span></div><a href="https://prsindia.org/" target="_blank" rel="noopener">Open ↗</a></div>
+   <div class="resource"><div class="resource-icon">📻</div><div class="resource-info"><strong>Sansad TV</strong><span>Parliamentary discussions and policy perspectives</span></div><a href="https://sansadtv.nic.in/" target="_blank" rel="noopener">Open ↗</a></div>
+   <div class="resource"><div class="resource-icon">🌱</div><div class="resource-info"><strong>MoEFCC</strong><span>Environment ministry policies, reports and updates</span></div><a href="https://moef.gov.in/" target="_blank" rel="noopener">Open ↗</a></div>
+  </div></div>
+ </div>
+ <p class="subtle" style="margin-top:14px">Privacy note: UPSC checklist, journal and daily-hour entries are currently stored in this browser only. They are not included in your Supabase cloud backup.</p>
+</section>
+
 <section class="page" id="page-opportunities">
  <div class="page-title"><div class="eyebrow">FIND YOUR NEXT OPPORTUNITY</div><h1>Scholarships & Opportunities</h1><p>Start with official Indian portals. Eligibility and deadlines vary by scheme.</p></div>
  <div class="cards" id="opportunityCards"></div>
@@ -555,7 +585,7 @@ const opportunities=[
 ['National Career Service','Career guidance, job services and employment resources.','https://www.ncs.gov.in/','💼']
 ];
 function toast(msg){let t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
-function go(page){$$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#crumb').textContent=({dashboard:'Overview',learn:'Learn & Resources',career:'Career & Placements',practice:'Practice & Quizzes',planner:'Study Planner',tools:'Calculators & Tools',opportunities:'Scholarships',profile:'My Profile'})[page]||'Student Hub';$('#sidebar').classList.remove('open');document.body.classList.remove('menu-open');$('.mobile-dock [data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'})}
+function go(page){$$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#crumb').textContent=({dashboard:'Overview',learn:'Learn & Resources',career:'Career & Placements',practice:'Practice & Quizzes',planner:'Study Planner',upsc:'UPSC Preparation',tools:'Calculators & Tools',opportunities:'Scholarships',profile:'My Profile'})[page]||'Student Hub';$('#sidebar').classList.remove('open');document.body.classList.remove('menu-open');$('.mobile-dock [data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'})}
 $$('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));$$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));function toggleMobileMenu(force){const open=typeof force==='boolean'?force:!$('#sidebar').classList.contains('open');$('#sidebar').classList.toggle('open',open);document.body.classList.toggle('menu-open',open)}$('#menuBtn').onclick=()=>toggleMobileMenu();$('#mobileMoreBtn').onclick=()=>toggleMobileMenu();$('#mobileScrim').onclick=()=>toggleMobileMenu(false);
 $('#today').textContent=new Intl.DateTimeFormat('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
 function cards(data,container,kind){$(container).innerHTML=data.map((r,i)=>`<article class="feature-card" data-search="${(r.join(' ')+' '+kind).toLowerCase()}"><div class="bigicon">${r[4]||r[3]||'✦'}</div><h3>${r[0]}</h3><p>${r[2]||r[1]}</p><a class="btn secondary small" href="${r[3]||r[2]}" target="_blank" rel="noopener">Visit resource ↗</a></article>`).join('')}
@@ -579,6 +609,44 @@ let qi=0,answers={},submitted=false;function renderQuiz(){let q=quiz[qi];$('#qui
 $('#nextQuestion').onclick=()=>{if(qi<quiz.length-1){if(answers[qi]===undefined){toast('Choose an answer first');return}qi++;renderQuiz()}else if(!submitted){if(answers[qi]===undefined){toast('Choose an answer first');return}submitted=true;renderQuiz()}else{qi=0;answers={};submitted=false;renderQuiz()}};renderQuiz();
 let profile=store.get('profile',{name:'',type:'College student'});$('#profileName').value=profile.name;$('#profileType').value=profile.type;$('#avatar').textContent=(profile.name||'S').trim()[0].toUpperCase();$('#saveProfile').onclick=()=>{profile={name:$('#profileName').value.trim(),type:$('#profileType').value};store.set('profile',profile);$('#avatar').textContent=(profile.name||'S')[0].toUpperCase();toast('Profile saved on this device')};
 $('#globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){go('learn');$('#resourceSearch').value=e.target.value;renderResources();}});
+
+
+// UPSC preparation tools — locally persisted in this browser
+const upscTopics=[
+ ['GS Paper I','Ancient & Medieval India','Modern Indian history','Indian culture & heritage','World history','Indian society','Physical geography','Indian & world geography'],
+ ['GS Paper II','Constitution & polity','Governance & social justice','Parliament & state legislatures','Judiciary & constitutional bodies','International relations'],
+ ['GS Paper III','Indian economy & planning','Agriculture & food security','Science & technology','Environment & biodiversity','Disaster management','Internal security'],
+ ['GS Paper IV','Ethics & human values','Attitude & aptitude','Emotional intelligence','Probity in governance','Case-study practice']
+];
+let upscChecked=store.get('upsc_checked',{}),upscNotes=store.get('upsc_notes',[]),upscHours=store.get('upsc_hours',{target:6,done:0,date:''});
+function renderUpscSyllabus(){
+ const host=$('#upscSyllabusList');if(!host)return;
+ host.innerHTML=upscTopics.map((group,g)=>'<div style="margin:12px 0 6px;font-size:12px;font-weight:800;color:var(--brand)">'+group[0]+'</div>'+group.slice(1).map((topic,i)=>{const id=g+'-'+i;return '<label class="task '+(upscChecked[id]?'done':'')+'"><input type="checkbox" data-upsc-topic="'+id+'" '+(upscChecked[id]?'checked':'')+'><span class="task-name">'+escapeHtml(topic)+'</span></label>'}).join('')).join('');
+ const total=upscTopics.reduce((n,g)=>n+g.length-1,0),done=Object.values(upscChecked).filter(Boolean).length,pct=Math.round(done/total*100);
+ $('#upscDoneCount').textContent=done+' / '+total;$('#upscProgressLabel').textContent=pct+'% of tracked topics';$('#upscSyllabusPercent').textContent=pct+'%';$('#upscSyllabusBar').style.width=pct+'%';
+ host.querySelectorAll('[data-upsc-topic]').forEach(el=>el.onchange=()=>{upscChecked[el.dataset.upscTopic]=el.checked;store.set('upsc_checked',upscChecked);renderUpscSyllabus()});
+}
+function renderUpscNotes(){
+ const host=$('#upscNotesList');if(!host)return;
+ $('#upscNotesCount').textContent=upscNotes.length;
+ host.innerHTML=upscNotes.slice(0,8).map(n=>'<div class="resource"><div class="resource-info"><strong>'+escapeHtml(n.title)+'</strong><span>'+escapeHtml(n.date)+' · '+escapeHtml(n.subject)+'<br>'+escapeHtml(n.body).slice(0,180)+'</span></div><button class="btn ghost small" type="button" data-delete-upsc-note="'+n.id+'">Delete</button></div>').join('')||'<div class="empty">No notes saved yet. Add your first current affairs note.</div>';
+ host.querySelectorAll('[data-delete-upsc-note]').forEach(b=>b.onclick=()=>{upscNotes=upscNotes.filter(n=>n.id!==b.dataset.deleteUpscNote);store.set('upsc_notes',upscNotes);renderUpscNotes();toast('Current affairs note deleted')});
+}
+function renderUpscHours(){
+ const todayKey=new Date().toISOString().slice(0,10);
+ if(upscHours.date!==todayKey)upscHours={...upscHours,done:0,date:todayKey};
+ $('#upscTargetHours').value=upscHours.target||6;$('#upscCompletedHours').value=upscHours.done||0;
+ $('#upscHoursLabel').textContent=(upscHours.done||0)+' / '+(upscHours.target||6)+' hrs';
+ $('#upscHoursResult').textContent=(upscHours.done||0)>=(upscHours.target||6)?'Daily target achieved. Review what you learned before stopping.':Math.max(0,(upscHours.target||6)-(upscHours.done||0))+' hours remaining toward today’s target.';
+}
+$('#upscNoteDate').value=new Date().toISOString().slice(0,10);
+$('#upscNoteForm').onsubmit=e=>{e.preventDefault();upscNotes.unshift({id:crypto.randomUUID(),date:$('#upscNoteDate').value,subject:$('#upscNoteSubject').value,title:$('#upscNoteTitle').value.trim(),body:$('#upscNoteBody').value.trim()});store.set('upsc_notes',upscNotes);e.target.reset();$('#upscNoteDate').value=new Date().toISOString().slice(0,10);renderUpscNotes();toast('Current affairs note saved')};
+$('#saveUpscHours').onclick=()=>{const target=Number($('#upscTargetHours').value),done=Number($('#upscCompletedHours').value);if(!Number.isFinite(target)||target<1||target>16||!Number.isFinite(done)||done<0||done>16){toast('Enter hours between 0 and 16; target must be 1–16');return}upscHours={target,done,date:new Date().toISOString().slice(0,10)};store.set('upsc_hours',upscHours);renderUpscHours();toast('Daily study progress saved')};
+function updateUpscWordCount(){const text=$('#upscAnswerText').value.trim(),count=text?text.split(/\s+/).length:0,target=Number($('#upscAnswerTarget').value);$('#upscWordCount').textContent=count+' / '+target+' words';$('#upscWordStatus').textContent=count===0?'Not started':count<target?'Keep writing':count===target?'Target reached':'Over target'}
+$('#upscAnswerText').addEventListener('input',updateUpscWordCount);$('#upscAnswerTarget').addEventListener('change',updateUpscWordCount);
+$('#clearUpscAnswer').onclick=()=>{$('#upscAnswerPrompt').value='';$('#upscAnswerText').value='';updateUpscWordCount();toast('Answer draft cleared')};
+$('[data-upsc-scroll]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.upscScroll).scrollIntoView({behavior:'smooth',block:'start'}));
+renderUpscSyllabus();renderUpscNotes();renderUpscHours();updateUpscWordCount();
 
 let supabaseClient=null, currentUser=null, authMode='login', cloudSaveTimer=null;
 const authScreen=$('#authScreen'), studentApp=$('#studentApp');
