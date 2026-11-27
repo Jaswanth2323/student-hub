@@ -680,13 +680,13 @@ $('#confirmOverlay').addEventListener('click',e=>{if(e.target.id==='confirmOverl
 document.addEventListener('keydown',e=>{if(e.key==='Escape')hideConfirmation()});
 $('#resendConfirm').onclick=async()=>{const btn=$('#resendConfirm'),email=$('#confirmEmail').textContent;btn.disabled=true;btn.textContent='Sending…';try{const {error}=await supabaseClient.auth.resend({type:'signup',email});if(error)throw error;btn.textContent='Confirmation email sent';}catch(err){btn.textContent=err.message||'Could not resend';}finally{setTimeout(()=>{btn.disabled=false;btn.textContent='Resend confirmation email'},3500)}};
 
-function showSignedIn(user){currentUser=user;authScreen.classList.add('hidden');studentApp.classList.remove('hidden');$('#userEmail').textContent=user.email||'';$('#avatar').textContent=((user.user_metadata?.display_name||profile?.name||user.email||'S').trim()[0]||'S').toUpperCase()}
+function showSignedIn(user){currentUser=user;authScreen.classList.add('hidden');studentApp.classList.remove('hidden');$('#userEmail').textContent=user.email||'';$('#profileEmail').value=user.email||'';$('#avatar').textContent=((user.user_metadata?.display_name||profile?.name||user.email||'S').trim()[0]||'S').toUpperCase()}
 function showSignedOut(){currentUser=null;studentApp.classList.add('hidden');authScreen.classList.remove('hidden');$('#userEmail').textContent=''}
 async function loadCloudData(){
  if(!currentUser)return;
  const {data,error}=await supabaseClient.from('student_data').select('tasks, profile, sessions').eq('user_id',currentUser.id).maybeSingle();
  if(error){toast('Could not load cloud data: '+error.message);return}
- if(data){tasks=Array.isArray(data.tasks)?data.tasks:[];profile=data.profile&&typeof data.profile==='object'?data.profile:{name:currentUser.user_metadata?.display_name||'',type:'College student'};store.set('tasks',tasks);store.set('profile',profile);store.set('sessions',Number(data.sessions)||0);$('#profileName').value=profile.name||'';$('#profileType').value=profile.type||'College student';$('#avatar').textContent=(profile.name||currentUser.email||'S')[0].toUpperCase();renderTasks();updateStats()}
+ if(data){tasks=Array.isArray(data.tasks)?data.tasks:[];profile=data.profile&&typeof data.profile==='object'?data.profile:{name:currentUser.user_metadata?.display_name||'',type:'College student'};store.set('tasks',tasks);store.set('profile',profile);store.set('sessions',Number(data.sessions)||0);$('#profileName').value=profile.name||'';$('#profileType').value=profile.type||'College student';$('#profileEmail').value=currentUser.email||'';$('#avatar').textContent=(profile.name||currentUser.email||'S')[0].toUpperCase();renderTasks();updateStats()}
  else {await saveCloudDataNow()}
 }
 async function saveCloudDataNow(){
